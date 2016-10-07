@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Lesson 7 Application Project</title>
+
+<script language="javascript">
+
+function validate(form) {
+    //Variables
+    var elem = document.getElementsByName("ccard");    //to hold the string of the selected radiobox
+    var ccardType; //to store the type of credit card selected.
+    var cardNum = document.getElementsByName("number")[0].value;
+    
+    if (document.getElementsByName("expYr")[0].value <= 2015){
+    	alert("Your card is expired.");
+    	return 0;
+    }
+    //used to find which radio box is selected and validate input
+    for (var i = 0; i < elem.length; i++){
+    	 if (elem[i].name == 'ccard' && elem[i].checked && elem[i].value == 'visa'){
+            ccardType = 'visa';
+            if ( cardNum.length != 16 || cardNum.charAt(0) != '4'){
+           		alert('Invalid input. Please review your card number and type.');
+        	}
+        	else{
+        		alert('You have a ' + ccardType + ' card.');
+        	}
+        }
+        else if (elem[i].name == 'ccard' && elem[i].checked && elem[i].value =='mc'){
+        	ccardType = 'master';
+        	if ( cardNum.length != 16 || cardNum.charAt(0) != '5'){
+           		alert('Invalid input. Please review your card number and type.');
+        	}
+        	else{
+        		alert('You have a ' + ccardType + ' card.');
+        	}
+        }
+        else if (elem[i].name == 'ccard' && elem[i].checked && elem[i].value =='amex'){
+        	ccardType = 'american express';
+        	if ( cardNum.length != 15 || cardNum.charAt(0) != '3'){
+           		alert('Invalid input. Please review your card number and type.');
+        	}
+        	else{
+        		alert('You have a ' + ccardType + ' card.');
+        	}
+        }
+    }
+
+
+}
+</script>
+
+</head>
+<!--End of Head -->
+
+<body>
+<h3>CIW JavaScript Specialist</h3>
+<hr />
+<form name="ccForm">
+<p>
+<input type="radio" name="ccard" value="visa" />
+Visa
+</p>
+<p>
+<input type="radio" name="ccard" value="mc" />
+MasterCard
+</p>
+<p>
+<input type="radio" name="ccard" value="amex" />
+American Express
+</p>
+<p>
+Card # 
+<input type="text" name="number" />
+</p>
+<p>
+Exp Date: 
+<select name="expMo">
+<option value=0>Jan
+<option value=1>Feb
+<option value=2>Mar
+<option value=3>Apr
+<option value=4>May
+<option value=5>Jun
+<option value=6>Jul
+<option value=7>Aug
+<option value=8>Sep
+<option value=9>Oct
+<option value=10>Nov
+<option value=11>Dec
+</select> 
+<select name="expYr">
+<option value=2011>2011
+<option value=2012>2012
+<option value=2013>2013
+<option value=2014>2014
+<option value=2015>2015
+<option value=2016>2016
+<option value=2017>2017
+<option value=2018>2018
+</select>
+</p>
+
+<input type="button" value="Check Form" onClick="validate(this.form);" />
+<input type="reset" value="Reset Form" />
+</form>
+
+</body>
+</html>
